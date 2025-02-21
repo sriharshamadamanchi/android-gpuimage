@@ -114,13 +114,13 @@ public class GPUImageTransformFilter extends GPUImageFilter {
         super.onDraw(textureId, vertBuffer, textureBuffer);
     }
 
+    public float[] getTransform3D() {
+        return transform3D;
+    }
+
     public void setTransform3D(float[] transform3D) {
         this.transform3D = transform3D;
         setUniformMatrix4f(transformMatrixUniform, transform3D);
-    }
-
-    public float[] getTransform3D() {
-        return transform3D;
     }
 
     public void setIgnoreAspectRatio(boolean ignoreAspectRatio) {
