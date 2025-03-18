@@ -1,0 +1,27 @@
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    publishing {
+        publications {
+            bar(MavenPublication) {
+                groupId "jp.co.cyberagent.android"
+                artifactId "gpuimage"
+                version "0.2.0"
+                artifact("$buildDir/outputs/aar/library-release.aar")
+            }
+
+        }
+
+        repositories {
+            maven {
+                name "gpuimage"
+                url uri("https://maven.pkg.github.com/HarshaR1642/android-gpuimage")
+                credentials {
+                    username = "HarshaR1642"
+                    password = ""
+                }
+            }
+        }
+    }
+
+}

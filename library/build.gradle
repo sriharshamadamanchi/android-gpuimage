@@ -50,4 +50,5 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: "${projectDir}/publish.gradle"
+//apply from: "${projectDir}/publish.gradle"
+apply from: "${projectDir}/maven.gradle"
