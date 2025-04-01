@@ -1,6 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { stream ->
+        localProperties.load(stream)
+    }
+}
+
+def gitToken = localProperties.getProperty("GIT_TOKEN_R", "")
+
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
     namespace "jp.co.cyberagent.android.gpuimage.sample"
@@ -42,16 +52,16 @@ android {
 repositories {
     maven {
         name "gpuimage"
-        url uri("https://maven.pkg.github.com/HarshaR1642/android-gpuimage")
+        url uri("https://maven.pkg.github.com/sriharshamadamanchi/android-gpuimage")
         credentials {
-            username = "HarshaR1642"
-            password = ""
+            username = "sriharshamadamanchi"
+            password = gitToken
         }
     }
 }
 
 dependencies {
-    implementation "jp.co.cyberagent.android:gpuimage:0.2.0"
+    implementation "jp.co.cyberagent.android:gpuimage:0.1.0"
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

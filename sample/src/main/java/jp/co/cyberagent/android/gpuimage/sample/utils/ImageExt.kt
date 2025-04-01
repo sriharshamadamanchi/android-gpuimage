@@ -22,10 +22,12 @@ fun Image.generateNV21Data(): ByteArray {
                 channelOffset = 0
                 outputStride = 1
             }
+
             1 -> {
                 channelOffset = width * height + 1
                 outputStride = 2
             }
+
             2 -> {
                 channelOffset = width * height
                 outputStride = 2

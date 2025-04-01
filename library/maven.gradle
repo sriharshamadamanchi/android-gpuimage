@@ -1,12 +1,22 @@
 apply plugin: 'maven-publish'
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { stream ->
+        localProperties.load(stream)
+    }
+}
+
+def gitToken = localProperties.getProperty("GIT_TOKEN_RW", "")
+
 afterEvaluate {
     publishing {
         publications {
             bar(MavenPublication) {
                 groupId "jp.co.cyberagent.android"
                 artifactId "gpuimage"
-                version "0.2.0"
+                version "0.1.0"
                 artifact("$buildDir/outputs/aar/library-release.aar")
             }
 
@@ -15,10 +25,10 @@ afterEvaluate {
         repositories {
             maven {
                 name "gpuimage"
-                url uri("https://maven.pkg.github.com/HarshaR1642/android-gpuimage")
+                url uri("https://maven.pkg.github.com/sriharshamadamanchi/android-gpuimage")
                 credentials {
-                    username = "HarshaR1642"
-                    password = ""
+                    username = "sriharshamadamanchi"
+                    password = gitToken
                 }
             }
         }
